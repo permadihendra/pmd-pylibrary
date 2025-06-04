@@ -24,16 +24,16 @@ pip install polars pandas pyarrow
 Or from this repo:
 
 ```bash
-git clone https://github.com/yourname/data-explorer-chain.git
-cd data-explorer-chain
+git clone git@github.com:permadihendra/my-pymodules.git
+cd my-pymodules/data-explorer-chain
 pip install -e .
 ```
 
 ## 🧪 Using conda (recommended for isolated environments):
 
 ```bash
-conda create -n data-explorer python=3.10 -y
-conda activate data-explorer
+conda create -n new-env python=3.10 -y
+conda activate new-env
 
 conda install -c conda-forge polars pandas pyarrow openpyxl
 ```
