@@ -24,8 +24,8 @@ pip install polars pandas pyarrow
 Or from this repo:
 
 ```bash
-git clone git@github.com:permadihendra/my-pymodules.git
-cd my-pymodules/data-explorer-chain
+git clone git@github.com:permadihendra/pmd-pymodules.git
+cd my-pymodules/analytics
 pip install -e .
 ```
 
@@ -36,6 +36,12 @@ conda create -n new-env python=3.10 -y
 conda activate new-env
 
 conda install -c conda-forge polars pandas pyarrow openpyxl
+```
+
+```bash
+git clone git@github.com:permadihendra/pmd-pymodules.git
+cd my-pymodules/analytics
+pip install -e .
 ```
 
 ⚠️ openpyxl is needed for Excel support in Polars
