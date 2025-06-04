@@ -1,9 +1,9 @@
 [project]
-name = "pmd-pymodules"
+name = "pmd-pylibrary"
 version = "0.1.0"
 description = "Private modular data tools"
 dependencies = ["polars", "pandas", "pyarrow", "openpyxl", "python-calamine"]
 requires-python = ">=3.9"
 
 [tool.setuptools]
-packages = ["analytics", "db", "utils"]
+packages = ["pmdlib.analytics", "pmdlib.db", "pmdlib.utils"]
