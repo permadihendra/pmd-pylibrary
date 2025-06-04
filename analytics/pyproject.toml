@@ -1,9 +1,0 @@
-[project]
-name = "data-explorer-chain"
-version = "0.1.0"
-description = "Optimized data exploration with Polars"
-authors = [{ name = "permadihendra", email = "hendrapermadi69@gmail.com" }]
-dependencies = ["polars", "pandas", "pyarrow"]
-
-[tool.setuptools]
-packages = ["analytics"]

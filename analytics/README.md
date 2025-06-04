@@ -25,7 +25,7 @@ Or from this repo:
 
 ```bash
 git clone git@github.com:permadihendra/pmd-pymodules.git
-cd my-pymodules/analytics
+cd pmd-pymodules
 pip install -e .
 ```
 
@@ -40,7 +40,7 @@ conda install -c conda-forge polars pandas pyarrow openpyxl
 
 ```bash
 git clone git@github.com:permadihendra/pmd-pymodules.git
-cd my-pymodules/analytics
+cd pmd-pymodules
 pip install -e .
 ```
 
@@ -49,7 +49,7 @@ pip install -e .
 ## 🛠️ Example Usage
 
 ```python
-from data_explorer import DataExplorerChain
+from analytics import DataExplorerChain
 
 df = (
     DataExplorerChain("data.xlsx", sheet_name="Sales", skip_rows=2)
