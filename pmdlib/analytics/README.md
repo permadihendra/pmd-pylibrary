@@ -24,8 +24,8 @@ pip install polars pandas pyarrow
 Or from this repo:
 
 ```bash
-git clone git@github.com:permadihendra/pmd-pymodules.git
-cd pmd-pymodules
+git clone git@github.com:permadihendra/pmd-pylibrary.git
+cd pmd-pylibrary
 pip install -e .
 ```
 
@@ -39,8 +39,8 @@ conda install -c conda-forge polars pandas pyarrow openpyxl
 ```
 
 ```bash
-git clone git@github.com:permadihendra/pmd-pymodules.git
-cd pmd-pymodules
+git clone git@github.com:permadihendra/pmd-pylibrary.git
+cd pmd-pylibrary
 pip install -e .
 ```
 
@@ -49,7 +49,7 @@ pip install -e .
 ## 🛠️ Example Usage
 
 ```python
-from analytics import DataExplorerChain
+from pmdlib.analytics import DataExplorerChain
 
 df = (
     DataExplorerChain("data.xlsx", sheet_name="Sales", skip_rows=2)
