@@ -3,8 +3,6 @@
 Effortless, memory-optimized data exploration in Python using **Polars**, inspired by Rust's ownership principles.
 Designed for analysts and developers who want **clean syntax**, **low RAM usage**, and **chainable** methods like pandas but smarter.
 
----
-
 ## 🚀 Features
 
 - 🔍 Simple `.load().explore()` workflow
@@ -14,8 +12,6 @@ Designed for analysts and developers who want **clean syntax**, **low RAM usage*
 - ⚡ Powered by **Polars** for speed and low memory footprint
 - 🧼 Optional `.drop_unused()` to keep only what's needed
 - 🧾 Supports `.csv`, `.parquet`, and `.xlsx` with sheet name and skip rows
-
----
 
 ## 📦 Installation
 
@@ -44,8 +40,6 @@ conda install -c conda-forge polars pandas pyarrow openpyxl
 
 ⚠️ openpyxl is needed for Excel support in Polars
 
-⸻
-
 ## 🛠️ Example Usage
 
 ```python
@@ -62,23 +56,15 @@ df = (
 )
 ```
 
-⸻
-
 ## 💡 Why Use This?
 
-    •	Built with performance in mind (no memory bloat)
-    •	Safer data handling inspired by Rust (__enter__, __del__)
-    •	Clean interface for exploration without keeping unnecessary variables
-    •	Perfect for Jupyter or production ETL steps
-
-⸻
+- Built with performance in mind (no memory bloat)
+- Safer data handling inspired by Rust `(__enter__, __del__)`
+- Clean interface for exploration without keeping unnecessary variables
+- Perfect for Jupyter or production ETL steps
 
 ## 🧪 Coming Soon
 
-    •	Excel export with styles
-    •	Semantic profiling reports
-    •	Smart filters (.filter_contains(), .filter_top_n())
-
-```
-
-```
+- Excel export with styles
+- Semantic profiling reports
+- Smart filters (.filter_contains(), .filter_top_n())
