@@ -80,6 +80,4 @@ df = (
 
 ## 🧪 Coming Soon
 
-- Excel export with styles
-- Semantic profiling reports
-- Smart filters (.filter_contains(), .filter_top_n())
+- Optimization on read `.parquet` and `.csv` files, like chunk size, etc

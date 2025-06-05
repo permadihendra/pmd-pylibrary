@@ -19,6 +19,7 @@ class DataExplorerChain:
         columns: list[str] = None,
         sheet_name=0,
         skip_rows: int = 0,
+        optimize: bool = True,
     ):
         """
         Args:
@@ -26,6 +27,7 @@ class DataExplorerChain:
             columns (list[str], optional): Columns to select
             sheet_name (str or int, optional): Sheet name/index for Excel
             skip_rows (int) : Skip row when excel reading
+            optimize (bool, default True) : Optimize reading .csv, and .parquet files
         """
         self.filepath = Path(filepath)
         self.columns = columns
@@ -35,11 +37,24 @@ class DataExplorerChain:
         self.df = None
 
     def load(self):
-        """Load dataset based on file extension."""
+        """
+        Load the data file into a Polars DataFrame.
+        Automatically detects file extension and uses optimized loading
+        for CSV and Parquet when self.optimize=True.
+        """
         ext = self.filepath.suffix.lower()
 
         if ext == ".csv":
-            self.df = pl.read_csv(self.filepath)
+            if self.optimize:
+                # Preview small sample
+                preview_df = pl.read_csv(self.filepath, n_rows=100)
+                print("📌 Preview of CSV file (100 rows):")
+                print(preview_df)
+
+                # Lazy load full CSV
+                self.df = pl.scan_csv(self.filepath).collect()
+            else:
+                self.df = pl.read_csv(self.filepath)
 
         elif ext in [".xls", ".xlsx"]:
             try:
@@ -67,7 +82,10 @@ class DataExplorerChain:
                 print("🔍 df loaded with pandas \n")
 
         elif ext == ".parquet":
-            self.df = pl.read_parquet(self.filepath)
+            if self.optimize:
+                self.df = pl.scan_parquet(self.filepath).collect()
+            else:
+                self.df = pl.read_parquet(self.filepath)
 
         else:
             raise ValueError(f"Unsupported file format: {ext}")
