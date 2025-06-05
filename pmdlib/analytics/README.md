@@ -13,12 +13,21 @@ Designed for analysts and developers who want **clean syntax**, **low RAM usage*
 - 🧼 Optional `.drop_unused()` to keep only what's needed
 - 🧾 Supports `.csv`, `.parquet`, and `.xlsx` with sheet name and skip rows
 
+## Dependencies
+
+This package requires:
+
+- `polars`
+- `pandas`
+- `pyarrow` (for pyarrow data backend)
+- `openpyxl` (for Excel)
+
 ## 📦 Installation
 
 ### 🐍 Using `pip`:
 
 ```bash
-pip install polars pandas pyarrow
+pip install polars pandas pyarrow openpyxl
 ```
 
 Or from this repo:
@@ -32,7 +41,7 @@ pip install -e .
 ## 🧪 Using conda (recommended for isolated environments):
 
 ```bash
-conda create -n new-env python=3.10 -y
+conda create -n new-env python -y
 conda activate new-env
 
 conda install -c conda-forge polars pandas pyarrow openpyxl
