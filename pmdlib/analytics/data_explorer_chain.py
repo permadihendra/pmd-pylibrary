@@ -34,6 +34,7 @@ class DataExplorerChain:
         self.sheet_name = sheet_name
         # 👇 Translate user-friendly skip_rows into proper Polars read_options
         self.read_options = {"header_row": skip_rows} if skip_rows else {}
+        self.optimize = optimize
         self.df = None
 
     def load(self):
