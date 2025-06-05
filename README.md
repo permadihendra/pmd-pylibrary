@@ -18,22 +18,21 @@ I use **Polars** instead of only Pandas, and I apply **Rust principles** (like d
 
 ## 📚 Available Modules
 
-| Module                    | Description                                                               | Link                                                         |
-| ------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| `analytics_data_explorer` | Memory-efficient DataFrame explorer using Polars with Rust-style chaining | [📄 View Module](./pmdlib/abaytics/README.md)                |
-| `db.sqlite_dbmanager`     | Lightweight SQLite database manager for saving/querying local data        | [📄 View Module](./pmdlib/db/README.md) _(or document soon)_ |
+| Module                          | Description                                                               | Link                                                         |
+| ------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `analytics.data_explorer_chain` | Memory-efficient DataFrame explorer using Polars with Rust-style chaining | [📄 View Module](./pmdlib/analytics/README.md)               |
+| `db.sqlite_dbmanager`           | Lightweight SQLite database manager for saving/querying local data        | [📄 View Module](./pmdlib/db/README.md) _(or document soon)_ |
 
 ---
 
 ## 💡 Why I Built This
 
 **I want to**:
-• Learn Python data tools the smart way
-• Keep my RAM usage low while exploring big data
-• Combine Rust ideas (like .drop(), .with_context(), .chain()) into Python classes
-• Build tools that are simple to use, and help me grow faster
 
-⸻
+- Learn Python data tools the smart way
+- Keep my RAM usage low while exploring big data
+- Combine Rust ideas (like .drop(), .with_context(), .chain()) into Python classes
+- Build tools that are simple to use, and help me grow faster
 
 ## 🔗 Next Steps
 
