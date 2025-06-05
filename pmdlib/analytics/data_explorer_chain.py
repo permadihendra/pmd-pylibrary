@@ -47,11 +47,6 @@ class DataExplorerChain:
 
         if ext == ".csv":
             if self.optimize:
-                # Preview small sample
-                preview_df = pl.read_csv(self.filepath, n_rows=100)
-                print("📌 Preview of CSV file (100 rows):")
-                print(preview_df)
-
                 # Lazy load full CSV
                 self.df = pl.scan_csv(self.filepath).collect()
             else:
