@@ -1,29 +1,36 @@
+from datetime import timedelta
+
 import pandas as pd
 
 
-def get_week_of_month_iso(dates: pd.Series) -> pd.Series:
+def get_week_of_month_iso1(dates: pd.Series) -> pd.Series:
     """
-    Return ISO-based week of the month for a datetime Series.
-
-    Week 1 is based on the ISO calendar (starting on Monday).
-    usage : df['week_of_month'] = get_week_of_month_iso(df['datetime_column']).
+    Calculate week-of-month for each date, where:
+    - Weeks start on Monday and end on Sunday.
+    - Week 1 starts from the first Monday in the same calendar month.
+    - usage : df['week_of_month'] = get_week_of_month_iso(df['datetime_column']).
     """
     dates = pd.to_datetime(dates)
-    result = []
+    week_of_month = []
 
     for date in dates:
-        # First day of month
+        # Get the Monday of the week the date belongs to
+        current_week_start = date - timedelta(days=date.weekday())
+
+        # Get the first day of the month
         first_day = date.replace(day=1)
-        # ISO week of the first day of the month
-        first_iso_week = first_day.isocalendar()[1]
-        current_iso_week = date.isocalendar()[1]
 
-        # Handle January case where first week can be 52 or 53
-        if first_iso_week > current_iso_week:
-            week_of_month = current_iso_week
-        else:
-            week_of_month = current_iso_week - first_iso_week + 1
+        # Find the first Monday in the same month
+        first_monday = first_day
+        while first_monday.weekday() != 0:
+            first_monday += timedelta(days=1)
 
-        result.append(week_of_month)
+        # Ensure the Monday is in the same month
+        if first_monday.month != date.month:
+            first_monday += timedelta(days=7)
 
-    return pd.Series(result, index=dates.index)
+        # Calculate week number
+        wom = ((current_week_start - first_monday).days // 7) + 1
+        week_of_month.append(max(wom, 1))  # Clamp to minimum of 1
+
+    return pd.Series(week_of_month, index=dates.index)
