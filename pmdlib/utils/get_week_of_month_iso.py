@@ -3,7 +3,7 @@ from datetime import timedelta
 import pandas as pd
 
 
-def get_week_of_month_iso1(dates: pd.Series) -> pd.Series:
+def get_week_of_month_iso(dates: pd.Series) -> pd.Series:
     """
     Calculate week-of-month for each date, where:
     - Weeks start on Monday and end on Sunday.
