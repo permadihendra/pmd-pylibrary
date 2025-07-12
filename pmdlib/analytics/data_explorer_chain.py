@@ -91,6 +91,63 @@ class DataExplorerChain:
 
         return self
 
+    def lazy_load(self):
+        """
+        Load the data file into a Polars DataFrame (eager or lazy).
+        Automatically detects file extension and uses lazy execution
+        for CSV and Parquet when self.optimize=True to reduce memory usage.
+        """
+        ext = self.filepath.suffix.lower()
+
+        if ext == ".csv":
+            if self.optimize:
+                # Truly lazy loading without collecting
+                self.df = pl.scan_csv(
+                    self.filepath, infer_schema_length=100, low_memory=True
+                )
+            else:
+                self.df = pl.read_csv(self.filepath)
+
+        elif ext in [".xls", ".xlsx"]:
+            try:
+                print("🔍 df loaded with polars \n")
+                self.df = pl.read_excel(
+                    source=self.filepath,
+                    sheet_name=self.sheet_name,
+                    read_options=self.read_options,
+                )
+            except TypeError:
+                import pandas as pd
+
+                header_row = self.read_options.get("header_row", 0)
+                df_pd = pd.read_excel(
+                    self.filepath,
+                    sheet_name=self.sheet_name,
+                    skiprows=header_row,
+                    engine="calamine",
+                    dtype_backend="pyarrow",
+                )
+                self.df = pl.from_pandas(df_pd)
+                print("🔍 df loaded with pandas \n")
+
+        elif ext == ".parquet":
+            if self.optimize:
+                self.df = pl.scan_parquet(self.filepath)
+            else:
+                self.df = pl.read_parquet(self.filepath)
+
+        else:
+            raise ValueError(f"Unsupported file format: {ext}")
+
+        # Only apply column selection if it's an eager frame
+        if self.columns:
+            if isinstance(self.df, pl.LazyFrame):
+                self.df = self.df.select(self.columns)
+            else:
+                self.df = self.df.select(self.columns)
+
+        return self
+
     def explore(self):
         """Print DataFrame summary and first few rows."""
         if self.df is not None:
