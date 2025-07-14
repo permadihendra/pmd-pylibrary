@@ -6,5 +6,4 @@ description = "Private modular data tools"
 requires-python = ">=3.11"
 
 [tool.setuptools]
-package-dir = {"" = "pmdlib"}  # Tells setuptools to treat 'pmdlib/' as root
 packages = ["pmdlib.analytics", "pmdlib.db", "pmdlib.utils"]
